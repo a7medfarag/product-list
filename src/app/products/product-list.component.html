@@ -49,7 +49,7 @@
                             {{product.productName}}
                         </td>
                         <td>
-                            {{product.productCode | lowercase}}
+                            {{product.productCode | lowercase | ConvertToSpaces: '-'}}
                         </td>                        
                         <td>
                             {{product.releaseDate}}

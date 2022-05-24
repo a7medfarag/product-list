@@ -1,24 +1,26 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { IProduct } from "./products";
 
 @Component({
     selector: 'pm-products',
-    templateUrl: './product-list.component.html'
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.css']
 })
 
-export class ProductListComponent{
+export class ProductListComponent implements OnInit{
     pageTitle = "Products List";
     imageWidth = 50;
     imageMargin = 2;
     showImage = false;
     listFilter = 'cart';
-    products = [
+    products: IProduct[] = [
         {
           "productId": 1,
           "productName": "Leaf Rake",
           "productCode": "GDN-0011",
           "releaseDate": "March 19, 2021",
-          "description": "Leaf rake with 48-inch wooden handle.",
           "price": 19.95,
+          "description": "Leaf rake with 48-inch wooden handle.",
           "starRating": 3.2,
           "imageUrl": "assets/images/leaf_rake.png"
         },
@@ -27,8 +29,8 @@ export class ProductListComponent{
           "productName": "Garden Cart",
           "productCode": "GDN-0023",
           "releaseDate": "March 18, 2021",
-          "description": "15 gallon capacity rolling garden cart",
           "price": 32.99,
+          "description": "15 gallon capacity rolling garden cart",
           "starRating": 4.2,
           "imageUrl": "assets/images/garden_cart.png"
         },
@@ -37,8 +39,8 @@ export class ProductListComponent{
           "productName": "Hammer",
           "productCode": "TBX-0048",
           "releaseDate": "May 21, 2021",
-          "description": "Curved claw steel hammer",
           "price": 8.9,
+          "description": "Curved claw steel hammer",
           "starRating": 4.8,
           "imageUrl": "assets/images/hammer.png"
         },
@@ -47,8 +49,8 @@ export class ProductListComponent{
           "productName": "Saw",
           "productCode": "TBX-0022",
           "releaseDate": "May 15, 2021",
-          "description": "15-inch steel blade hand saw",
           "price": 11.55,
+          "description": "15-inch steel blade hand saw",
           "starRating": 3.7,
           "imageUrl": "assets/images/saw.png"
         },
@@ -57,8 +59,8 @@ export class ProductListComponent{
           "productName": "Video Game Controller",
           "productCode": "GMG-0042",
           "releaseDate": "October 15, 2020",
-          "description": "Standard two-button video game controller",
           "price": 35.95,
+          "description": "Standard two-button video game controller",
           "starRating": 4.6,
           "imageUrl": "assets/images/xbox-controller.png"
         }
@@ -66,5 +68,10 @@ export class ProductListComponent{
 
       toggleImage(){
         this.showImage = !this.showImage;
+      }
+
+      ngOnInit(): void {
+        console.log('ngOnInit');
+        
       }
 }
