@@ -1,3 +1,10 @@
+
+.card{
+    background-image: url(../../assets/images/17580.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 thead{
     color: #337AB7;
 }

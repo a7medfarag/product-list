@@ -4,10 +4,10 @@ import { Component } from '@angular/core'
   template: `
     <div>
       <h1>{{ title }}</h1>
-      <p> My First Project </p>
       <pm-products></pm-products>
     </div>
-  `
+  `,
+  styleUrls:['./app.component.css']
 })
 export class AppComponent{
   title: string = 'ACME Project Management'
