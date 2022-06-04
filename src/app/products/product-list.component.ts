@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
 import { ProductService } from "./product.service";
 // import { ProductService } from "./product.service";
 import { IProduct } from "./products";
@@ -10,11 +11,12 @@ import { IProduct } from "./products";
     // providers: [ProductService] hena 34an law 3ayez am3el inject lelservice badal ma aktebha henak fe elservice nafsha ya3ney
 })
 
-export class ProductListComponent implements OnInit{
+export class ProductListComponent implements OnInit , OnDestroy{
     pageTitle = "Products List";
     imageWidth = 50;
     imageMargin = 2;
     showImage = false;
+    sub!:Subscription;
 
 
     constructor(private _poductSerive: ProductService){}
@@ -44,7 +46,7 @@ export class ProductListComponent implements OnInit{
       }
       ngOnInit(): void {
         // To start the life cycle hook with intializing the array values from the service
-        this._poductSerive.getPoducts().subscribe({
+        this.sub = this._poductSerive.getPoducts().subscribe({
           next: products => {
             this.products = products;
             this.filteredProducts = this.products;
@@ -54,5 +56,8 @@ export class ProductListComponent implements OnInit{
       }
       onRatingClicked(message: string):void{
         this.pageTitle = "Products List " + message;
+      }
+      ngOnDestroy(): void {
+        this.sub.unsubscribe();
       }
 }

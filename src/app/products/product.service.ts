@@ -10,10 +10,10 @@ import { IProduct } from "./products";
     providedIn : 'root'
 })
 export class ProductService{
+  private productUrl = 'assets/api/products/products.json';
 
   constructor(private http:HttpClient){}
 
-  private productUrl = '../../api/products/products.json';
 
     getPoducts(): Observable<IProduct[]>{
         return this.http.get<IProduct[]>(this.productUrl).pipe(
