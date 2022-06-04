@@ -26,7 +26,7 @@ export class ProductListComponent implements OnInit{
 
     products: IProduct[] = [];
 
-
+    errorMessage:string = '';
     get listFilter(): string{
       return this._listFilter;
     }
@@ -44,8 +44,13 @@ export class ProductListComponent implements OnInit{
       }
       ngOnInit(): void {
         // To start the life cycle hook with intializing the array values from the service
-        this.products = this._poductSerive.getPoducts();
-        this.filteredProducts = this.products;
+        this._poductSerive.getPoducts().subscribe({
+          next: products => {
+            this.products = products;
+            this.filteredProducts = this.products;
+          },
+          error: err => this.errorMessage = err
+        })
       }
       onRatingClicked(message: string):void{
         this.pageTitle = "Products List " + message;
